@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  --color-primary: #1e3a8a;
+  --color-secondary: #10b981;
+  --color-accent: #f59e0b;
+  --color-accent-hover: #d38b0d;
+  --color-bg1: #ffffff;
+  --color-bg2: #f3f4f6;
+  --color-text: #374151;
+  --color-text-white: #ffffff;
+  --color-error: #ef4444;
+  --color-shadow: #272525;
+
+  --font-h1: 1.75rem;
+  --font-h2: 1.375rem;
+  --font-h3: 1.125rem;
+  --font-para: 0.875rem;
+  --font-minor: 0.75rem;
+  --font-buttons: 1rem;
+  --font-inter: "Inter";
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: var(--font-para);
+  font-family: var(--font-inter);
+}
+
+h1 {
+  font-size: var(--font-h1);
+}
+
+h2 {
+  font-size: var(--font-h2);
+}
+
+h3 {
+  font-size: var(--font-h3);
+}
+
+button {
+  border: none;
+  font-size: var(--font-buttons);
+  padding: 8px 16px;
+  border-radius: 0.5rem;
+  max-width: 10rem;
+}
+
+.primary-btn {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 2px var(--color-shadow);
+}
+
+.primary-btn:hover {
+  background-color: var(--color-accent-hover);
+}
+
+.secondary-btn {
+  background-color: white;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 0.5rem;
+  box-shadow: 2px 4px 2px var(--color-shadow);
+  transition: all 200ms ease-in-out;
+}
+
+.secondary-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  transition: all 200ms ease-in-out;
+}
+
+.cta-btn {
+  background-color: var(--color-accent);
+  box-shadow: 2px 4px 2px var(--color-shadow);
+  color: var(--color-text-white);
+  transition: all 200ms ease-in-out;
+}
+
+.cta-btn:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: none;
+  transition: all 200ms ease-in-out;
+}
+
+@media only screen and (min-width: 768px) {
+  :root {
+    --font-h1: 1.875rem;
+    --font-h2: 1.5rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  :root {
+    --font-h1: 2rem;
+    --font-h2: 1.625rem;
+    --font-h3: 1.25rem;
+    --font-para: 1rem;
+    --font-minor: 0.875rem;
+    --font-buttons: 1.125rem;
+  }
+}
