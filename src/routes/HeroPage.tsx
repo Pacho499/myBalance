@@ -1,4 +1,11 @@
 import "../styles/routes/HeroPage.css";
+import {
+  faChartLine,
+  faLock,
+  faPiggyBank,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const HeroPage = () => {
   return (
     <div className="heroPage-container">
@@ -16,18 +23,24 @@ const HeroPage = () => {
             <span>Iscrivi ora gratis!</span>
           </button>
           <button className="secondary-btn">
-            <span>Più informazioni</span>
+            <span>Scopri di più</span>
           </button>
         </div>
       </main>
-      <section className="heroPage-info">
+      <section className="heroPage-info-container">
         <div className="card-info">
+          <FontAwesomeIcon icon={faChartLine} size="lg" />
           <p>Visualizza l’andamento delle tue spese mensili.</p>
         </div>
         <div className="card-info">
-          <p>Condividi i conti con chi vuoi, in tutta sicurezza</p>
+          <FontAwesomeIcon icon={faLock} size="lg" />
+          <p>
+            Inserisci i dati senza collegare i tuoi veri conti, in tutta
+            sicurezza
+          </p>
         </div>
         <div className="card-info">
+          <FontAwesomeIcon icon={faPiggyBank} size="lg" />
           <p>Imposta piani di risparmio personalizzati</p>
         </div>
       </section>

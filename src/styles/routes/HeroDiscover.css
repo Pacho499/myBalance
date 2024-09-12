@@ -1,0 +1,45 @@
+.heroDiscover-container {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--color-bg2);
+  color: var(--color-text);
+  padding: 24px;
+}
+
+.heroDiscover-container h1 {
+  font-weight: bold;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.heroDiscover-img-container {
+  width: min(60rem, 100%);
+  max-height: 30rem;
+  margin: 2rem auto;
+  object-fit: cover;
+}
+
+.heroDiscover-img-container img {
+  width: 100%;
+  height: 100%;
+  max-height: 30rem;
+  aspect-ratio: 1/1;
+  object-position: center;
+}
+
+.heroDiscover-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 10rem;
+  margin: auto;
+  text-align: center;
+}
+
+.heroDiscover-step-icon {
+  background-color: var(--color-primary);
+  color: var(--color-text-white);
+  padding: 1rem;
+  border-radius: 100%;
+}
