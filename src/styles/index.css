@@ -18,6 +18,7 @@
   --font-para: 0.875rem;
   --font-minor: 0.75rem;
   --font-buttons: 1rem;
+  --font-label: 1rem;
   --font-inter: "Inter";
 }
 
@@ -47,6 +48,10 @@ button {
   padding: 8px 16px;
   border-radius: 0.5rem;
   max-width: 10rem;
+}
+
+label {
+  font-size: var(--font-label);
 }
 
 .primary-btn {
