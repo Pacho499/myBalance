@@ -7,12 +7,13 @@ import {
 import { supabase } from "./utils/supabase";
 import HeroPage from "./routes/HeroPage";
 import HeroDiscover from "./routes/HeroDiscover";
-import Header from "./components/Header";
 import Login from "./routes/Login";
 import { Session } from "@supabase/supabase-js";
+import Layout from "./components/Layout";
 
 const App = () => {
   const [session, setSession] = useState<null | Session>(null);
+  const sessionProp = session ? true : false;
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -27,25 +28,30 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HeroPage />,
-    },
-    {
-      path: "/scopri",
-      element: <HeroDiscover />,
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/homepage",
-      element: session ? <h1>homepage</h1> : <Navigate to={"/login"} />,
+      element: <Layout session={sessionProp} />,
+      children: [
+        {
+          path: "/",
+          element: <HeroPage />,
+        },
+        {
+          path: "/scopri",
+          element: <HeroDiscover />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/homepage",
+          element: session ? <h1>homepage</h1> : <Navigate to={"/login"} />,
+        },
+      ],
     },
   ]);
 
   return (
     <>
-      <Header />
       <RouterProvider router={router} />
     </>
   );

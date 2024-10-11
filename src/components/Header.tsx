@@ -1,16 +1,15 @@
 import "../styles/components/Header.css";
-const Header = () => {
-  return (
-    <header>
-      <div>
-        <p>logo</p>
-      </div>
-      <div className="header-btn-container">
-        <button className="secondary-btn">Login</button>
-        <button className="cta-btn">Iscriviti</button>
-      </div>
-    </header>
+import { useMemo } from "react";
+import AnonHeader from "./headers/AnonHeader";
+import AuthHeader from "./headers/AuthHeader";
+
+const Header = ({ session }: { session: boolean }) => {
+  const headerToRender = useMemo(
+    () => (session ? <AuthHeader /> : <AnonHeader />),
+    [session]
   );
+
+  return headerToRender;
 };
 
 export default Header;

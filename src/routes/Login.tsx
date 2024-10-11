@@ -1,10 +1,15 @@
 import { AuthProps } from "../types/supabaseUtils";
-import { signUp, login } from "../utils/supabase";
+import { login, signUp } from "../utils/supabase";
 import { useState } from "react";
 import "../styles/routes/Login.css";
+import { useLocation } from "react-router-dom";
 
 export default function Login() {
-  const [isSignup, setIsSignUp] = useState<boolean>(true);
+  const {
+    state: { iSsignUp },
+  } = useLocation();
+
+  const [isSignup, setIsSignUp] = useState<boolean>(iSsignUp);
   const [authData, setAuthData] = useState<AuthProps>({
     email: "",
     password: "",
