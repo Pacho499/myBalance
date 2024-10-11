@@ -93,6 +93,11 @@ label {
   transition: all 200ms ease-in-out;
 }
 
+.error {
+  color: var(--color-error);
+  font-size: 0.85remrem;
+}
+
 @media only screen and (min-width: 768px) {
   :root {
     --font-h1: 1.875rem;

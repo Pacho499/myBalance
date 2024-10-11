@@ -1,41 +1,45 @@
-import { AuthProps } from "../types/supabaseUtils";
+import { AuthProps, ApiAuthError } from "../types/supabaseUtils";
 import { login, signUp } from "../utils/supabase";
 import { useState } from "react";
 import "../styles/routes/Login.css";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const {
     state: { iSsignUp },
   } = useLocation();
+  const navigate = useNavigate();
 
   const [isSignup, setIsSignUp] = useState<boolean>(iSsignUp);
   const [authData, setAuthData] = useState<AuthProps>({
     email: "",
     password: "",
   });
+  const [error, setError] = useState<ApiAuthError>({
+    error: false,
+    message: "",
+  });
 
   const titleText = isSignup ? "Iscriviti" : "Accedi";
-
   const spanText = isSignup
     ? "Sei già registrato? clicca qui per accedere"
     : "Non sei ancora registrato? Clicca qui per iscriverti";
 
   const handleLogin = async () => {
-    if (isSignup) {
-      const signed = await signUp({
-        email: authData.email,
-        password: authData.password,
-      });
-      console.log(signed);
-    } else {
-      const authenticated = await login({
-        email: authData.email,
-        password: authData.password,
-      });
-      console.log(authenticated);
+    const authFunction = isSignup ? signUp : login;
+    const { error } = await authFunction({
+      email: authData.email,
+      password: authData.password,
+    });
+
+    if (error) {
+      setError({ error: true, message: error.message });
+      return;
     }
-    //   TODO: redirect with useNavigate
+
+    setError({ error: false, message: "" });
+    navigate("/");
   };
 
   const handleAuthData = (key: "email" | "password", value: string) => {
@@ -61,7 +65,8 @@ export default function Login() {
           id="password"
         />
       </div>
-      <button className="cta-btn" onClick={handleLogin}>
+      {error.error && <span className="error">{error.message}</span>}
+      <button className="cta-btn" onClick={() => handleLogin()}>
         {titleText}
       </button>
       <span className="login-span" onClick={() => setIsSignUp(!isSignup)}>

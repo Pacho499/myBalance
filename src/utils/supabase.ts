@@ -14,10 +14,10 @@ export const signUp = async ({ email, password }: AuthProps) => {
 
   if (error) {
     console.error(error);
-    return error;
+    return { error };
   }
 
-  return data;
+  return { data };
 };
 
 export const login = async ({ email, password }: AuthProps) => {
@@ -28,14 +28,16 @@ export const login = async ({ email, password }: AuthProps) => {
 
   if (error) {
     console.error(error);
-    return error;
+    return { error };
   }
 
-  return data;
+  return { data };
 };
 
 export const logout = async () => {
   const { error } = await supabase.auth.signOut();
-  if (error) return error;
-  return true;
+  if (error) {
+    console.error(error);
+    return { error };
+  }
 };
