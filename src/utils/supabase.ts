@@ -47,6 +47,7 @@ export const logout = async () => {
   }
   localStorage.removeItem("userId");
   localStorage.removeItem("username");
+  localStorage.removeItem("token");
 };
 
 export const getUserData = async () => {

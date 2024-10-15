@@ -41,9 +41,8 @@ export default function Login() {
     }
 
     setError({ error: false, message: "" });
-    localStorage.setItem("userId", data.user?.user_metadata.sub);
-    localStorage.setItem("username", data.user?.user_metadata.username);
 
+    localStorage.setItem("token", data.session!.access_token);
     navigate("/homepage");
   };
 

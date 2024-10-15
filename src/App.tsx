@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
-import { getUserData, supabase } from "./utils/supabase";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { supabase } from "./utils/supabase";
 import HeroPage from "./routes/HeroPage";
 import HeroDiscover from "./routes/HeroDiscover";
 import Login from "./routes/Login";
@@ -15,6 +11,7 @@ import HomePage from "./routes/HomePage";
 const App = () => {
   const [session, setSession] = useState<null | Session>(null);
   const sessionProp = session ? true : false;
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -23,12 +20,15 @@ const App = () => {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
-    getUserData().then((userMetadata) => {
-      localStorage.setItem("userId", userMetadata.sub);
-      localStorage.setItem("username", userMetadata.username);
-    });
   }, []);
+
+  useEffect(() => {
+    if (session !== null) {
+      localStorage.setItem("userId", session.user.user_metadata.sub);
+      localStorage.setItem("username", session.user.user_metadata.username);
+      localStorage.setItem("token", session.access_token);
+    }
+  }, [session]);
 
   const router = createBrowserRouter([
     {
@@ -49,7 +49,7 @@ const App = () => {
         },
         {
           path: "/homepage",
-          element: session ? <HomePage /> : <Navigate to={"/login"} />,
+          element: <HomePage />,
         },
       ],
     },
