@@ -15,6 +15,7 @@ export default function Login() {
   const [authData, setAuthData] = useState<AuthProps>({
     email: "",
     password: "",
+    username: "",
   });
   const [error, setError] = useState<ApiAuthError>({
     error: false,
@@ -31,6 +32,7 @@ export default function Login() {
     const { error } = await authFunction({
       email: authData.email,
       password: authData.password,
+      username: authData.username,
     });
 
     if (error) {
@@ -42,13 +44,26 @@ export default function Login() {
     navigate("/");
   };
 
-  const handleAuthData = (key: "email" | "password", value: string) => {
+  const handleAuthData = (
+    key: "email" | "password" | "username",
+    value: string
+  ) => {
     setAuthData((prev) => ({ ...prev, [key]: value }));
   };
 
   return (
     <div className="login-container">
       <h2>{titleText} a MyBalance</h2>
+      {isSignup && (
+        <div className="login-input">
+          <label htmlFor="username">Inserisci il tuo nome utente</label>
+          <input
+            onChange={(e) => handleAuthData("username", e.target.value)}
+            type="text"
+            id="username"
+          />
+        </div>
+      )}
       <div className="login-input">
         <label htmlFor="email">Inserisci la tua mail</label>
         <input
