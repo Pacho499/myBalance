@@ -29,7 +29,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     const authFunction = isSignup ? signUp : login;
-    const { error } = await authFunction({
+    const { data, error } = await authFunction({
       email: authData.email,
       password: authData.password,
       username: authData.username,
@@ -41,7 +41,10 @@ export default function Login() {
     }
 
     setError({ error: false, message: "" });
-    navigate("/");
+    localStorage.setItem("userId", data.user?.user_metadata.sub);
+    localStorage.setItem("username", data.user?.user_metadata.username);
+
+    navigate("/homepage");
   };
 
   const handleAuthData = (

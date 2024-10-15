@@ -45,4 +45,17 @@ export const logout = async () => {
     console.error(error);
     return { error };
   }
+  localStorage.removeItem("userId");
+  localStorage.removeItem("username");
+};
+
+export const getUserData = async () => {
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error) {
+    console.error(error);
+    return { error };
+  }
+
+  return data.user.user_metadata;
 };

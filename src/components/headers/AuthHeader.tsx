@@ -16,10 +16,10 @@ const AuthHeader = () => {
         <p>logo</p>
       </div>
       <div className="header-btn-container">
-        <Link to="/login" state={{ signUp: false }}>
+        <Link to="/homepage" state={{ signUp: false }}>
           <button className="secondary-btn">HomePage</button>
         </Link>
-        <Link to="/login" state={{ signUp: true }}>
+        <Link to="/profile" state={{ signUp: true }}>
           <button className="cta-btn">Profilo</button>
         </Link>
         <button className="secondary-btn" onClick={handleLogout}>
